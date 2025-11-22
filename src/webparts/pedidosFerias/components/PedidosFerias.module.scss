@@ -1,0 +1,262 @@
+// Estilos do componente Pedidos de Férias
+
+@import '~@fluentui/react/dist/sass/References.scss';
+
+.pedidosFerias {
+  padding: 24px;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+  // Cabeçalho
+  .cabecalho {
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid #e8e8e8;
+
+    .titulo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 24px;
+      font-weight: 700;
+      color: #1a1a2e;
+
+      i {
+        color: #0078d4;
+        font-size: 28px;
+      }
+    }
+  }
+
+  // Área de filtros
+  .filtros {
+    margin-bottom: 24px;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
+    border: 1px solid #e8e8e8;
+
+    .labelFiltro {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      font-size: 13px;
+      color: #444;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+  }
+
+  // Lista de pedidos
+  .lista {
+    margin-top: 16px;
+    background: #ffffff;
+    border-radius: 10px;
+    overflow-x: auto;
+    overflow-y: visible;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
+    border: 1px solid #e8e8e8;
+
+    // Garantir que a tabela tem scroll
+    :global(.ms-DetailsList) {
+      overflow: visible;
+    }
+
+    :global(.ms-DetailsList-contentWrapper) {
+      overflow: visible;
+    }
+
+    :global(.ms-DetailsRow) {
+      border-bottom: 1px solid #f0f0f0;
+      transition: all 0.2s ease;
+
+      &:hover {
+        background: linear-gradient(90deg, #f0f7ff 0%, #ffffff 100%);
+        transform: translateX(2px);
+      }
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+
+    :global(.ms-DetailsHeader) {
+      padding-top: 0;
+      background: #fafbfc;
+      border-bottom: 2px solid #e8e8e8;
+
+      :global(.ms-DetailsHeader-cell) {
+        font-weight: 700;
+        color: #1a1a2e;
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+      }
+    }
+
+    :global(.ms-DetailsRow-cell) {
+      display: flex;
+      align-items: center;
+      padding: 12px 8px;
+    }
+  }
+
+  // Estilos dos estados
+  .estadoPendente {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+    color: #e65100;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 12px;
+
+    i {
+      font-size: 12px;
+    }
+  }
+
+  .estadoAprovado {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+    color: #2e7d32;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 12px;
+
+    i {
+      font-size: 12px;
+    }
+  }
+
+  .estadoRejeitado {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+    color: #c62828;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 12px;
+
+    i {
+      font-size: 12px;
+    }
+  }
+
+  // Botões de ação
+  .botaoAprovar {
+    background: linear-gradient(135deg, #4caf50 0%, #43a047 100%);
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(76, 175, 80, 0.3);
+
+    &:hover {
+      background: linear-gradient(135deg, #43a047 0%, #388e3c 100%);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 8px rgba(76, 175, 80, 0.4);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+
+  .botaoRejeitar {
+    background: #ffffff;
+    border: 2px solid #ef5350;
+    border-radius: 6px;
+    color: #ef5350;
+    font-weight: 600;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background: linear-gradient(135deg, #ef5350 0%, #e53935 100%);
+      color: white;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 8px rgba(239, 83, 80, 0.4);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+
+  .estadoFinal {
+    font-size: 13px;
+    color: #757575;
+    font-weight: 500;
+  }
+
+  // Loading
+  .loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px;
+    background: #ffffff;
+    border-radius: 10px;
+  }
+
+  // Mensagem de erro
+  .mensagemErro {
+    margin-bottom: 16px;
+    border-radius: 8px;
+  }
+
+  // Rodapé com estatísticas
+  .rodape {
+    margin-top: 20px;
+    padding: 16px 20px;
+    background: linear-gradient(90deg, #f5f7fa 0%, #ffffff 100%);
+    border-radius: 8px;
+    border: 1px solid #e8e8e8;
+
+    span {
+      color: #555;
+      font-size: 13px;
+      font-weight: 500;
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .pedidosFerias {
+    padding: 16px;
+    border-radius: 8px;
+
+    .cabecalho .titulo {
+      font-size: 20px;
+    }
+
+    .filtros {
+      padding: 16px;
+    }
+
+    .botaoAprovar,
+    .botaoRejeitar {
+      padding: 6px 12px;
+      font-size: 12px;
+    }
+
+    .estadoPendente,
+    .estadoAprovado,
+    .estadoRejeitado {
+      padding: 4px 8px;
+      font-size: 11px;
+    }
+  }
+}
