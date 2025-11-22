@@ -41,4 +41,4 @@ gulp package-solution --ship
 
 ## Autor
 
-Bernardo
+Bernardo Cardoso
