@@ -21,8 +21,7 @@ import {
   IPersonaProps
 } from '@fluentui/react';
 import { PeoplePicker, PrincipalType } from '@pnp/spfx-controls-react/lib/PeoplePicker';
-
-import styles from './PedidosFerias.module.scss';
+import './PedidosFerias.scss';
 import { IPedidosFeriasProps } from './IPedidosFeriasProps';
 import { IPedidoFerias, OrdenacaoTipo, EstadoPedido } from '../models';
 import { SharePointService, GraphService } from '../services';
@@ -159,11 +158,11 @@ const PedidosFerias: React.FC<IPedidosFeriasProps> = (props) => {
   const getEstadoCor = (estado: EstadoPedido): string => {
     switch (estado) {
       case 'Aprovado':
-        return styles.estadoAprovado;
+        return 'pf-estadoAprovado';
       case 'Rejeitado':
-        return styles.estadoRejeitado;
+        return 'pf-estadoRejeitado';
       default:
-        return styles.estadoPendente;
+        return 'pf-estadoPendente';
     }
   };
 
@@ -225,7 +224,7 @@ const PedidosFerias: React.FC<IPedidosFeriasProps> = (props) => {
       maxWidth: 110,
       isResizable: true,
       onRender: (item: IPedidoFerias) => (
-        <Text className={getEstadoCor(item.Estado)}>
+        <span className={getEstadoCor(item.Estado)}>
           <Icon
             iconName={
               item.Estado === 'Aprovado'
@@ -236,7 +235,7 @@ const PedidosFerias: React.FC<IPedidosFeriasProps> = (props) => {
             }
           />{' '}
           {item.Estado}
-        </Text>
+        </span>
       )
     },
     {
@@ -253,21 +252,19 @@ const PedidosFerias: React.FC<IPedidosFeriasProps> = (props) => {
                 iconProps={{ iconName: 'Accept' }}
                 onClick={() => handleAprovar(item.Id)}
                 disabled={atualizando === item.Id}
-                className={styles.botaoAprovar}
-                styles={{ root: { minWidth: 80, padding: '0 8px' } }}
+                className="pf-botaoAprovar"
               />
               <DefaultButton
                 text="Rejeitar"
                 iconProps={{ iconName: 'Cancel' }}
                 onClick={() => handleRejeitar(item.Id)}
                 disabled={atualizando === item.Id}
-                className={styles.botaoRejeitar}
-                styles={{ root: { minWidth: 80, padding: '0 8px' } }}
+                className="pf-botaoRejeitar"
               />
             </>
           )}
           {item.Estado !== 'Pendente' && (
-            <Text variant="small" className={styles.estadoFinal}>
+            <Text variant="small" className="pf-estadoFinal">
               {item.Estado === 'Aprovado' ? '✓ Aprovado' : '✗ Rejeitado'}
             </Text>
           )}
@@ -283,20 +280,20 @@ const PedidosFerias: React.FC<IPedidosFeriasProps> = (props) => {
   ];
 
   return (
-    <div className={styles.pedidosFerias}>
+    <div className="pf-container">
       {/* Cabeçalho */}
-      <div className={styles.cabecalho}>
-        <Text variant="xLarge" className={styles.titulo}>
+      <div className="pf-cabecalho">
+        <Text variant="xLarge" className="pf-titulo">
           <Icon iconName="Calendar" /> Pedidos de Férias
         </Text>
       </div>
 
       {/* Filtros */}
-      <div className={styles.filtros}>
+      <div className="pf-filtros">
         <Stack horizontal tokens={{ childrenGap: 16 }} wrap>
           {/* People Picker para filtrar por colaborador */}
           <Stack.Item grow>
-            <Text variant="small" className={styles.labelFiltro}>
+            <Text variant="small" className="pf-labelFiltro">
               Filtrar por colaborador:
             </Text>
             <PeoplePicker
@@ -316,7 +313,7 @@ const PedidosFerias: React.FC<IPedidosFeriasProps> = (props) => {
 
           {/* Dropdown para ordenação */}
           <Stack.Item>
-            <Text variant="small" className={styles.labelFiltro}>
+            <Text variant="small" className="pf-labelFiltro">
               Ordenar por data de início:
             </Text>
             <Dropdown
@@ -346,7 +343,7 @@ const PedidosFerias: React.FC<IPedidosFeriasProps> = (props) => {
           isMultiline={false}
           onDismiss={() => setErro(null)}
           dismissButtonAriaLabel="Fechar"
-          className={styles.mensagemErro}
+          className="pf-mensagemErro"
         >
           {erro}
         </MessageBar>
@@ -354,7 +351,7 @@ const PedidosFerias: React.FC<IPedidosFeriasProps> = (props) => {
 
       {/* Loading */}
       {loading && (
-        <div className={styles.loading}>
+        <div className="pf-loading">
           <Spinner size={SpinnerSize.large} label="A carregar pedidos..." />
         </div>
       )}
@@ -367,7 +364,7 @@ const PedidosFerias: React.FC<IPedidosFeriasProps> = (props) => {
           layoutMode={DetailsListLayoutMode.justified}
           selectionMode={SelectionMode.none}
           isHeaderVisible={true}
-          className={styles.lista}
+          className="pf-lista"
         />
       )}
 
@@ -381,7 +378,7 @@ const PedidosFerias: React.FC<IPedidosFeriasProps> = (props) => {
 
       {/* Rodapé com estatísticas */}
       {!loading && pedidos.length > 0 && (
-        <div className={styles.rodape}>
+        <div className="pf-rodape">
           <Text variant="small">
             Total: {pedidos.length} pedido(s) |
             Pendentes: {pedidos.filter(p => p.Estado === 'Pendente').length} |
