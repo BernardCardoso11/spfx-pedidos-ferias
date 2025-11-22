@@ -2,5 +2,5 @@
   "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/spfx-serve.schema.json",
   "port": 4321,
   "https": true,
-  "initialPage": "https://testeferiasspf.sharepoint.com/sites/Ferias/_layouts/workbench.aspx"
+  "initialPage": "https://TENANT.sharepoint.com/sites/SEU-SITE/_layouts/workbench.aspx"
 }
